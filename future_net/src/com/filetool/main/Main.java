@@ -14,8 +14,7 @@ import com.routesearch.route.Route;
 public class Main {
 	public static void main(String[] args) {
 		if (args.length != 3) {
-			System.err
-					.println("please input args: graphFilePath, conditionFilePath, resultFilePath");
+			System.err.println("please input args: graphFilePath, conditionFilePath, resultFilePath");
 			return;
 		}
 

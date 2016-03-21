@@ -22,7 +22,7 @@ public class Route {
 		// 解析图像信息
 		if (!ResolveGraphContent(graphContent, arrayVertexId, arrayEdge)) {
 			return NO_ANSWER;
-		}// 进行条件判断，返回NA？
+		} // 进行条件判断，返回NA？
 		int nVertexNum = arrayVertexId.size();// 图中顶点的数量
 		// 解析题目条件
 		String[] arrayCondition = condition.split(",");
@@ -69,8 +69,8 @@ public class Route {
 	}
 
 	// 解析图像信息
-	private static boolean ResolveGraphContent(String graphContent,
-			ArrayList<Integer> arrayVertexId, ArrayList<Edge> arrayEdge) {
+	private static boolean ResolveGraphContent(String graphContent, ArrayList<Integer> arrayVertexId,
+			ArrayList<Edge> arrayEdge) {
 		if (arrayVertexId == null) {
 			arrayVertexId = new ArrayList<Integer>();
 		} else {
@@ -117,8 +117,7 @@ public class Route {
 	// 检验输入数据的合法性
 	private static boolean CheckEdgeInfoData(Edge edge) {
 		if (edge != null) {
-			if (edge.nSourceIdInTopo < 0 || edge.nDestIdInTopo < 0
-					|| edge.nWeight < 0) {
+			if (edge.nSourceIdInTopo < 0 || edge.nDestIdInTopo < 0 || edge.nWeight < 0) {
 				return false;
 			} else {
 				return true;
