@@ -3,26 +3,50 @@ package com.filetool.model;
 import java.util.ArrayList;
 
 public class Vertex {
-	public boolean bVisited;// 是否被访问过
-	public Object oValue;// 顶点的值
-	public ArrayList<Integer> visitedVertexIdList;
+	private boolean visited;// 是否被访问过
+	private Object value;// 顶点的值
+	private ArrayList<Integer> visitedVertexIdList;
 
 	public Vertex() {
-		this.bVisited = false;
-		this.oValue = "";
+		this.visited = false;
+		this.value = "";
 		this.visitedVertexIdList = new ArrayList<Integer>();
 	}
 
 	public Vertex(String name) {
-		this.bVisited = false;
-		this.oValue = name;
+		this.visited = false;
+		this.value = name;
 		this.visitedVertexIdList = new ArrayList<Integer>();
 	}
 
-	public void ResetVisitedIdList() {
+	public boolean getVisited() {
+		return this.visited;
+	}
+
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
+
+	public ArrayList<Integer> getVisitedVertexIdList() {
+		return visitedVertexIdList;
+	}
+
+	public void setVisitedVertexIdList(ArrayList<Integer> visitedVertexIdList) {
+		this.visitedVertexIdList = visitedVertexIdList;
+	}
+
+	public void resetVisitedIdList() {
 		if (this.visitedVertexIdList != null) {
-			for (Integer nVertexId : visitedVertexIdList) {
-				nVertexId = 0;
+			for (Integer vertexId : visitedVertexIdList) {
+				vertexId = 0;
 			}
 		} else {
 			this.visitedVertexIdList = new ArrayList<Integer>();

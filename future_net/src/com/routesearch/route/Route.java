@@ -23,54 +23,54 @@ public class Route {
 		if (!ResolveGraphContent(graphContent, arrayVertexId, arrayEdge)) {
 			return NO_ANSWER;
 		} // 进行条件判断，返回NA？
-		int nVertexNum = arrayVertexId.size();// 图中顶点的数量
+		int vertexNum = arrayVertexId.size();// 图中顶点的数量
 		// 解析题目条件
 		String[] arrayCondition = condition.split(",");
 		if (arrayCondition.length < 3) {
 			return NO_ANSWER;
 		}
-		int nTopoSourceId = Integer.parseInt(arrayCondition[0]);// 在拓扑结构中的路径起点
-		int nTopoDestId = Integer.parseInt(arrayCondition[1]);// 在拓扑结构中的路径终点
-		int nSerialSourceId = arrayVertexId.lastIndexOf(nTopoSourceId);// 在邻接矩阵中起点的标号
-		int nSerialDestId = arrayVertexId.lastIndexOf(nTopoDestId);// 在邻接矩阵中终点的标号
+		int topoSourceId = Integer.parseInt(arrayCondition[0]);// 在拓扑结构中的路径起点
+		int topoDestId = Integer.parseInt(arrayCondition[1]);// 在拓扑结构中的路径终点
+		int serialSourceId = arrayVertexId.lastIndexOf(topoSourceId);// 在邻接矩阵中起点的标号
+		int serialDestId = arrayVertexId.lastIndexOf(topoDestId);// 在邻接矩阵中终点的标号
 
 		ArrayList<Integer> fixedVertexList = new ArrayList<Integer>();// 必须经过的顶点列表
 		String fixedPointList = arrayCondition[2].replace("\n", "");// 过定点的列表,去除换行符
 		String arrayFixedPoint[] = fixedPointList.split("\\|");
 		for (String strFixedPoint : arrayFixedPoint) {
-			int nFixedPoint = Integer.parseInt(strFixedPoint);
-			fixedVertexList.add(nFixedPoint);
+			int fixedPoint = Integer.parseInt(strFixedPoint);
+			fixedVertexList.add(fixedPoint);
 		}
 
-		Graph graph = new Graph(nVertexNum);
-		graph.Init(arrayVertexId, arrayEdge);
+		Graph graph = new Graph(vertexNum);
+		graph.init(arrayVertexId, arrayEdge);
 		ArrayList<Path> allPathList = new ArrayList<Path>();// 从起点到终点在图中所有的路径
-		if (!graph.FindAllPath(nSerialSourceId, nSerialDestId, allPathList)) {
+		if (!graph.findAllPath(serialSourceId, serialDestId, allPathList)) {
 			return NO_ANSWER;
 		}
 		ArrayList<Path> filterPathList = new ArrayList<Path>();// 过定点的路径集合
 		for (Path path : allPathList) {
-			if (path.ContainFixedVertexList(fixedVertexList)) {
+			if (path.containFixedVertexList(fixedVertexList)) {
 				filterPathList.add(path);
 			}
 		}
 		for (Path path : filterPathList) {
-			path.nPathDistance = graph.GetPathDistance(path);
+			path.setPathDistance(graph.getPathDistance(path));
 		}
 		Path shortestPath = filterPathList.get(0);
 		for (Path path : filterPathList) {
-			if (path.nPathDistance < shortestPath.nPathDistance) {
+			if (path.getPathDistance() < shortestPath.getPathDistance()) {
 				shortestPath = path;
 			}
 		}
-		String strShortestPath = shortestPath.GetPathInTopo(arrayEdge);
+		String strShortestPath = shortestPath.getPathInTopo(arrayEdge);
 		return strShortestPath;
 
 	}
 
 	// 解析图像信息
-	private static boolean ResolveGraphContent(String graphContent, ArrayList<Integer> arrayVertexId,
-			ArrayList<Edge> arrayEdge) {
+	private static boolean ResolveGraphContent(String graphContent,
+			ArrayList<Integer> arrayVertexId, ArrayList<Edge> arrayEdge) {
 		if (arrayVertexId == null) {
 			arrayVertexId = new ArrayList<Integer>();
 		} else {
@@ -89,20 +89,20 @@ public class Route {
 			if (unit.length < 4) {
 				return false;
 			}
-			Integer nSource = Integer.parseInt(unit[1]);
-			Integer nDest = Integer.parseInt(unit[2]);
-			if (!arrayVertexId.contains(nSource)) {
-				arrayVertexId.add(nSource);
+			Integer source = Integer.parseInt(unit[1]);
+			Integer dest = Integer.parseInt(unit[2]);
+			if (!arrayVertexId.contains(source)) {
+				arrayVertexId.add(source);
 			}
-			if (!arrayVertexId.contains(nDest)) {
-				arrayVertexId.add(nDest);
+			if (!arrayVertexId.contains(dest)) {
+				arrayVertexId.add(dest);
 			}
 
 			Edge tempEdge = new Edge();
-			tempEdge.strSerialNo = unit[0];
-			tempEdge.nSourceIdInTopo = Integer.parseInt(unit[1]);
-			tempEdge.nDestIdInTopo = Integer.parseInt(unit[2]);
-			tempEdge.nWeight = Integer.parseInt(unit[3]);
+			tempEdge.setStrSerialNo(unit[0]);
+			tempEdge.setSourceIdInTopo(Integer.parseInt(unit[1]));
+			tempEdge.setDestIdInTopo(Integer.parseInt(unit[2]));
+			tempEdge.setWeight(Integer.parseInt(unit[3]));
 			if (!CheckEdgeInfoData(tempEdge)) {
 				return false;
 			}
@@ -117,7 +117,8 @@ public class Route {
 	// 检验输入数据的合法性
 	private static boolean CheckEdgeInfoData(Edge edge) {
 		if (edge != null) {
-			if (edge.nSourceIdInTopo < 0 || edge.nDestIdInTopo < 0 || edge.nWeight < 0) {
+			if (edge.getSourceIdInTopo() < 0 || edge.getDestIdInTopo() < 0
+					|| edge.getWeight() < 0) {
 				return false;
 			} else {
 				return true;
