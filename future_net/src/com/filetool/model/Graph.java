@@ -44,16 +44,16 @@ public class Graph {
 
 	}
 
-	public ArrayList<Vertex> GetVertexList() {
+	public ArrayList<Vertex> getVertexList() {
 		return this.vertexList;
 	}
 
-	public int[][] GetEdgeMatrix() {
+	public int[][] getEdgeMatrix() {
 		return this.edgeMatrix;
 	}
 
 	// 获得某点的顶点值
-	public Object GetVertexValueByIndex(int nIndex) {
+	public Object getVertexValueByIndex(int nIndex) {
 		if (nIndex < this.vertexList.size()) {
 			return ((Vertex) this.vertexList.get(nIndex)).getValue();
 		}
@@ -62,7 +62,7 @@ public class Graph {
 	}
 
 	// 获得两点之间的权重值
-	public int GetWeight(int nV1, int nV2) {
+	public int getWeight(int nV1, int nV2) {
 		if ((nV1 < this.edgeMatrix.length) && (nV2 < this.edgeMatrix.length)) {
 			return this.edgeMatrix[nV1][nV2];
 		}
@@ -214,7 +214,7 @@ public class Graph {
 					&& this.vertexList.get(nParent).getVisitedVertexIdList()
 							.get(i) == 0 && !stack.contains(i)) {
 				this.vertexList.get(nParent).getVisitedVertexIdList().set(i, 1);
-				// LogUtil.printLog("[getAdjacentUnVisitedVertex end]");
+				// LogUtil.1("[getAdjacentUnVisitedVertex end]");
 				return i;
 			}
 
