@@ -6,3 +6,4 @@ com/filetool/model/Edge.java
 com/filetool/model/Graph.java
 com/filetool/model/Path.java
 com/filetool/model/Vertex.java
+com/util/test/FileUtilTest.java

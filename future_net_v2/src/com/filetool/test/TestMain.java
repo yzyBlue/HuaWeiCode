@@ -23,20 +23,17 @@ public class TestMain {
 		vertexs.add(e);
 		vertexs.add(f);
 		int[][] edges = {
-				{ Integer.MAX_VALUE, 6, 3, Integer.MAX_VALUE,
-						Integer.MAX_VALUE, Integer.MAX_VALUE },
-				{ 6, Integer.MAX_VALUE, 2, 5, Integer.MAX_VALUE,
-						Integer.MAX_VALUE },
+				{ Integer.MAX_VALUE, 6, 3, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE },
+				{ 6, Integer.MAX_VALUE, 2, 5, Integer.MAX_VALUE,Integer.MAX_VALUE },
 				{ 3, 2, Integer.MAX_VALUE, 3, 4, Integer.MAX_VALUE },
 				{ Integer.MAX_VALUE, 5, 3, Integer.MAX_VALUE, 5, 3 },
-				{ Integer.MAX_VALUE, Integer.MAX_VALUE, 4, 5,
-						Integer.MAX_VALUE, 5 },
-				{ Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, 3,
-						5, Integer.MAX_VALUE } };
-		Graph graph = new Graph(vertexs, edges);
+				{ Integer.MAX_VALUE, Integer.MAX_VALUE, 4, 5,Integer.MAX_VALUE, 5 },
+				{ Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, 3,5, Integer.MAX_VALUE } 
+				};
+		Graph graph = new Graph(vertexs, edges, edges.length);
 		graph.printGraph();
 		graph.search();
-
+		System.out.println(graph.getVertexList().toString());
 	}
 
 }
